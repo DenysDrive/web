@@ -11,6 +11,7 @@ const api = axios.create({
 })
 
 export default boot(({ app, router, store }) => {
+  window.global = window;
   app.config.globalProperties.$axios = axios
   app.config.globalProperties.$api = api
 })

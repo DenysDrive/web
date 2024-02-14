@@ -23,7 +23,14 @@ module.exports = configure(function (ctx) {
 
     build: {
       env: envparser(),
-      vueRouterMode: 'history'
+      vueRouterMode: 'history',
+      extendWebpack(cfg) {
+        cfg.plugins.push(
+          new webpack.ProvidePlugin({
+            global: require.resolve('globalthis') // This will shim `global` with `globalthis` polyfill
+          })
+        );
+      }
     },
 
     devServer: {
